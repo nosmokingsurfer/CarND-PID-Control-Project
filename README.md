@@ -1,3 +1,25 @@
+                   
+# Reflection
+ 
+# Describe the effect each of the P, I, D components had in your implementation
+Proportional component is responsible for main input into the steering. It is just proportional to the cross track error. If I use only the P component in PID controller there will be lot of oscillations with constant amplitude. If to make the analogy with point mass motion — the P component acts like elastic spring — there is no damping in absolutely elastic spring force so the point will oscillate around the fixed point with amplitude which depends on the initial condition.
+ 
+The Differential component is responsible for damping the steering — if the car approaches the target trajectory i.e. the CTE changes with high rate the D component increases and counteracts to the P component. If to make the analogy to the point mass motion — the D component is a viscous friction force that is opposite to the direction of point mass motion.
+ 
+The Integral component is responsible for eliminating systematic biases which are coused by external forces which can't be measured or predicted. It accumulates the error over the time and at some moment the I component becomes significant in comparison with P and D components and starts influencing the PID output.
+ 
+# Describe how the final hyperparameters were chosen.
+ 
+I just ran a series of experiments and tried different combination of coefficients. I have practical experience of PID controller tuning. I started with the P component. After I got some stable oscillations I added the D component. At last I added the I component.
+ 
+The fastest speed of my model is about 40 miles per hour — the car was able to drive several laps without going off the track or popping on the ledges.
+ 
+
+
+
+
+
+
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
