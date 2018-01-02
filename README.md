@@ -1,29 +1,5 @@
-                   
-# Reflection
- 
-# Describe the effect each of the P, I, D components had in your implementation
-Proportional component is responsible for main input into the steering. It is just proportional to the cross track error. If I use only the P component in PID controller there will be lot of oscillations with constant amplitude. If to make the analogy with point mass motion — the P component acts like elastic spring — there is no damping in absolutely elastic spring force so the point will oscillate around the fixed point with amplitude which depends on the initial condition.
- 
-The Differential component is responsible for damping the steering — if the car approaches the target trajectory i.e. the CTE changes with high rate the D component increases and counteracts to the P component. If to make the analogy to the point mass motion — the D component is a viscous friction force that is opposite to the direction of point mass motion.
- 
-The Integral component is responsible for eliminating systematic biases which are coused by external forces which can't be measured or predicted. It accumulates the error over the time and at some moment the I component becomes significant in comparison with P and D components and starts influencing the PID output.
- 
-# Describe how the final hyperparameters were chosen.
- 
-I just ran a series of experiments and tried different combination of coefficients. I have practical experience of PID controller tuning. I started with the P component. After I got some stable oscillations I added the D component. At last I added the I component.
- 
-The fastest speed of my model is about 40 miles per hour — the car was able to drive several laps without going off the track or popping on the ledges.
- 
-
-
-
-
-
-
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
-
----
 
 ## Dependencies
 
@@ -48,65 +24,20 @@ Self-Driving Car Engineer Nanodegree Program
     Some function signatures have changed in v0.14.x. See [this PR](https://github.com/udacity/CarND-MPC-Project/pull/3) for more details.
 * Simulator. You can download these from the [project intro page](https://github.com/udacity/self-driving-car-sim/releases) in the classroom.
 
-## Basic Build Instructions
+---
 
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+# Reflection
+ 
+# Describe the effect each of the P, I, D components had in your implementation
+Proportional component is responsible for main input into the steering. It is just proportional to the cross track error. If I use only the P component in PID controller there will be lot of oscillations with constant amplitude. If to make the analogy with point mass motion — the P component acts like elastic spring — there is no damping in absolutely elastic spring force so the point will oscillate around the fixed point with amplitude which depends on the initial condition.
+ 
+The Differential component is responsible for damping the steering — if the car approaches the target trajectory i.e. the CTE changes with high rate the D component increases and counteracts to the P component. If to make the analogy to the point mass motion — the D component is a viscous friction force that is opposite to the direction of point mass motion.
+ 
+The Integral component is responsible for eliminating systematic biases, which are caused by external forces, which cannot be measured or predicted. It accumulates the error over the time and at some moment the I component becomes significant in comparison with P and D components and starts influencing the PID output.
+ 
+# Describe how the final hyper parameters were chosen.
+ 
+I ran a series of experiments and tried different combination of coefficients. I have practical experience of PID controller tuning. I started with the P component. After I got some stable oscillations, I added the D component. At last, I added the I component.
+ 
+The fastest speed of my model is about 40 miles per hour — the car was able to drive several laps without going off the track or popping on the ledges.
 
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
-
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
-for instructions and the project rubric.
-
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
-
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
